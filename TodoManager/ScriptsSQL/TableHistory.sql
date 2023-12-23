@@ -1,0 +1,48 @@
+CREATE TABLE HPrioridadesTarefas(
+	HPRD_Id [int] IDENTITY(1,1) NOT NULL,
+	HPRD_Descricao [nvarchar](max) NOT NULL,
+	H_DT_ENTRADA DATE NOT NULL
+	CONSTRAINT PK_HPRD PRIMARY KEY (HPRD_Id,H_DT_ENTRADA)
+);
+
+CREATE TABLE HStatusTarefas(
+	HSTS_Id [int] IDENTITY(1,1) NOT NULL,
+	HSTS_Status [nvarchar](max) NOT NULL,
+	H_DT_ENTRADA DATE NOT NULL
+	CONSTRAINT PK_HSTS PRIMARY KEY (HSTS_Id,H_DT_ENTRADA)
+);
+
+CREATE TABLE HTarefas(
+	HTRF_Id [int] IDENTITY(1,1) NOT NULL,
+	HTRF_Titulo [nvarchar](max) NOT NULL,
+	HTRF_Descrição [nvarchar](max) NOT NULL,
+	HTRF_DataCriada [datetime2](7) NOT NULL,
+	HTRF_DataConclusao  [datetime2](7) NOT NULL,
+	HTRF_PRD_Id  [int] NOT NULL,
+	HPrioridadeTarefaPRD_Id [int] NULL,
+	HTRF_USU_Id [int] NOT NULL,
+	HUsuarioUSU_Id [int] NULL,
+	HStatusTarefaSTS_Id [int] NULL,
+	HTRF_STS_Id [int] NOT NULL,
+	HTRF_DataFInalizada [datetime2](7) NOT NULL,
+	H_DT_ENTRADA DATE NOT NULL
+	CONSTRAINT PK_HTRF PRIMARY KEY (HTRF_Id,H_DT_ENTRADA)
+);
+
+CREATE TABLE HTiposUsuarios(
+	HTPU_Id [int] IDENTITY(1,1) NOT NULL,
+	HTPU_Descricao [nvarchar](max) NOT NULL,
+	H_DT_ENTRADA DATE NOT NULL
+	CONSTRAINT PK_HTPU PRIMARY KEY (HTPU_Id,H_DT_ENTRADA)
+);
+
+CREATE TABLE HUsuarios(
+	HUSU_Id [int] IDENTITY(1,1) NOT NULL,
+	HUSU_Name [nvarchar](max) NOT NULL,
+	HUSU_Email [nvarchar](max) NOT NULL,
+	HUSU_Senha [nvarchar](max) NOT NULL,
+	HTipoUsuarioTPU_Id [int] NULL,
+	HUSU_TPU_Id [int] NOT NULL,
+	H_DT_ENTRADA DATE NOT NULL
+	CONSTRAINT PK_HUSU PRIMARY KEY (HUSU_Id,H_DT_ENTRADA)
+);

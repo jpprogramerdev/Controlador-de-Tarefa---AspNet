@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Tarefa>
+@{
+    Layout = "_LayoutUser";
+    ViewData["Title"] = "Tarefas";
+}
+
+<div class="grid-container-card">
+    @foreach (Tarefa Tarefa in Model) {
+        <partial name="_TarefasResumo" for="@Tarefa" />
+    }
+</div>

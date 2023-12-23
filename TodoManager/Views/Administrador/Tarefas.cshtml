@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Tarefa> 
+@{
+    if (TempData["SucessoApagarTarefa"] != null) {
+        <div class="alert alert-success" role="alert">
+            @TempData["SucessoApagarTarefa"]
+        </div>
+    }
+    Layout = "_LayoutAdm";
+    ViewData["Title"] = "Tarefas";
+}
+
+<div class="grid-container-card">
+    @foreach (Tarefa Tarefa in Model) {
+        <partial name="_TarefasResumo" for="@Tarefa" />
+    }
+</div>

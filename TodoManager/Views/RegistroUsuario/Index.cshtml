@@ -1,0 +1,40 @@
+﻿@model Usuario
+
+@{
+    ViewData["Title"] = "Registrar usuario";
+    Layout = "_LayoutAdm";
+
+    @if (TempData["SucessoAddUsuario"] != null) {
+        <div class="alert alert-success" role="alert">
+            @TempData["SucessoAddUsuario"]
+        </div>
+    }
+}
+
+<form asp-controller="RegistroUsuario" asp-action="RegistrarUsuario" method="post">
+    <div class="form-group">
+        <label for="name-register">Nome:</label>
+        <input type="text" class="form-control" id="name-register" asp-for="@Model.USU_Name" placeholder="Nome">
+    </div>
+
+    <div class="form-group">
+        <label for="email-register">Email:</label>
+        <input type="email" class="form-control" id="email-register" asp-for="@Model.USU_Email" placeholder="Email">
+    </div>
+
+    <div class="form-group">
+        <label for="password-register">Senha:</label>
+        <input type="password" class="form-control" id="password-register" asp-for="@Model.USU_Senha" placeholder="Senha" placeholder="Senha">
+    </div>
+
+    <div class="form-group">
+        <label for="password-register">Confirmar Senha:</label>
+        <input type="password" class="form-control" id="confirm-password-register" asp-for="@Model.USU_Senha" placeholder="Senha" placeholder="Senha">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-form-send">Registrar</button>
+    </div>
+</form>
+
+<script src="~/js/verify-password.js"></script>

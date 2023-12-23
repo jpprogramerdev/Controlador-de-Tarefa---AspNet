@@ -1,0 +1,38 @@
+﻿body {
+}
+
+fieldset {
+    border: 1px solid black;
+    padding: 5vh;
+    border-radius: 0.25rem;
+    background-color: #fffdfc;
+}
+
+form.form-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 5vh;
+}
+
+.form-login-group {
+    padding-top: 5vh;
+}
+.form-login-group input {
+        width: 100%;
+}
+
+button.btn-form-send {
+    margin-top: 5vh;
+}
+
+img{
+    width: 10%;
+    height: auto;
+}
+
+label{
+    font-size:1.2rem;
+}

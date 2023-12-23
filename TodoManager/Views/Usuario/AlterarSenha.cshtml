@@ -1,0 +1,37 @@
+﻿@model Usuario
+
+@{
+    if (Model.USU_TPU_Id == 1) {
+        Layout = "_LayoutAdm";
+    } else {
+        Layout = "_LayoutUser";
+    }
+    ViewData["Title"] = Model.USU_Name + " - Meu perfil";
+
+    @if (TempData["SucessoAlterarSenha"] != null) {
+        <div class="alert alert-success" role="alert">
+            @TempData["SucessoAlterarSenha"]
+        </div>
+    }
+}
+<form asp-controller="RegistroUsuario" asp-action="RegistrarUsuarioComNovaSenha" method="post">
+    <div class="form-group">
+        <label for="password-register">Nova senha:</label>
+        <input type="password" class="form-control" id="password-register" asp-for="@Model.USU_Senha" placeholder="Nova Senha">
+    </div>
+     <div class="form-group">
+        <label for="password-register">Confirmar Senha:</label>
+        <input type="password" class="form-control" id="confirm-password-register" asp-for="@Model.USU_Senha" placeholder="Senha" placeholder="Senha">
+    </div>
+
+    <input type="hidden" asp-for="@Model.USU_Name">
+    <input type="hidden" asp-for="@Model.USU_Email">
+    <input type="hidden" asp-for="@Model.USU_Id">
+    <input type="hidden" asp-for="@Model.USU_TPU_Id">
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-form-send">Salvar</button>
+    </div>
+</form>
+
+<script src="~/js/verify-password.js"></script>

@@ -1,0 +1,47 @@
+﻿@model UsuarioTarefa
+@{
+    ViewData["Title"] = "Atualizar tarefa - " + Model.Tarefa.TRF_Titulo;
+    Layout = "_LayoutAdm";
+
+    @if (TempData["ErrorDate"] != null) {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorDate"]
+        </div>
+    } 
+}
+
+<form asp-action="EditarPost">
+    <input type="hidden" asp-for="Tarefa.TRF_Id" />
+
+    <div class="form-group">
+        <label for="titulo-tarefa-register">Titulo tarefa:</label>
+        <input type="text" class="form-control" id="titulo-tarefa-register" asp-for="@Model.Tarefa.TRF_Titulo" placeholder="Titulo">
+    </div>
+
+    <div class="form-group">
+        <label for="descricao-tarefa-register">Descrição tarefa:</label>
+        <input type="text" class="form-control" id="descricao-tarefa-register" asp-for="@Model.Tarefa.TRF_Descrição" placeholder="Descrição"></input>
+    </div>
+
+    <div class="form-group">
+        <label for="data-conclusao-register">Data de conclusão:</label>
+        <input type="date" class="form-control" id="data-conclusao-register" asp-for="@Model.Tarefa.TRF_DataConclusao" placeholder="@DateTime.Now.ToString("dd/MM/yyyy")">
+    </div>
+
+    <div class="form-group">
+        <label for="data-conclusao-register">Usuario para tarefa:</label>
+        <select class="form-select" aria-label="Default select example" asp-for="@Model.Tarefa.TRF_USU_Id" asp-items="@(new SelectList(Model.Usuarios, "USU_Id", "USU_Name"))">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="data-conclusao-register">Prioridade da tarefa:</label>
+        <select class="form-select" aria-label="Default select example" asp-for="@Model.Tarefa.TRF_PRD_Id" asp-items="@(new SelectList(Model.Prioridades, "PRD_Id", "PRD_Descricao"))">
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Salvar" class="btn btn-primary" />
+    </div>
+</form>
+
+

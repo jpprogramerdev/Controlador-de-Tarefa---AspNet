@@ -1,0 +1,60 @@
+﻿@model UsuarioTarefa
+
+@{
+    if(Model.Usuario.USU_TPU_Id == 1){
+        Layout = "_LayoutAdm";
+    }else{
+        Layout = "_LayoutUser";
+    }
+
+    @if (TempData["SucessoAtualizadaTarefa"] != null) {
+        <div class="alert alert-success" role="alert">
+            @TempData["SucessoAtualizadaTarefa"]
+        </div>
+    }
+    ViewData["Title"] = @Model.Tarefa.TRF_Titulo;
+}
+@if (Model.Usuario.USU_TPU_Id == 1){
+    <label class="label-text-tarefa">Titulo da tarefa</label>
+    <p class="text-tarefa">@Model.Tarefa.TRF_Titulo</p>
+
+    <label class="label-text-tarefa">Descrição da tarefa</label>
+    <p class="text-tarefa">@Model.Tarefa.TRF_Descrição</p>
+
+    <label class="label-text-tarefa">Usuario designado para tarefa</label>
+    <p class="text-tarefa">@Model.Tarefa.Usuario.USU_Name</p>
+
+    <label class="label-text-tarefa">Data para conclusão</label>
+    <p class="text-tarefa">@Model.Tarefa.TRF_DataConclusao.ToString("dd/MM/yyyy")</p>
+
+    <label class="label-text-tarefa">Data de criação</label>
+    <p class="text-tarefa">@Model.Tarefa.TRF_DataCriada.ToString("dd/MM/yyyy - hh:mm:ss")</p>
+
+    <label class="label-text-tarefa">Prioridade da tarefa</label>
+    <p class="text-tarefa">@Model.Tarefa.PrioridadeTarefa.PRD_Descricao</p>
+
+    <label class="label-text-tarefa">Status atual da tarefa</label>
+    <p class="text-tarefa">@Model.Tarefa.StatusTarefa.STS_Status</p>
+
+    <partial name="_LinkAtualizarStsTarefa" for="@Model.Tarefa" />
+}else{
+    <label class="label-text-tarefa">Titulo da tarefa</label>
+    <p class="text-tarefa">@Model.Tarefa.TRF_Titulo</p>
+
+    <label class="label-text-tarefa">Descrição da tarefa</label>
+    <p class="text-tarefa">@Model.Tarefa.TRF_Descrição</p>
+
+    <label class="label-text-tarefa">Data para conclusão</label>
+    <p class="text-tarefa">@Model.Tarefa.TRF_DataConclusao.ToString("dd/MM/yyyy")</p>
+
+    <label class="label-text-tarefa">Data de criação</label>
+    <p class="text-tarefa">@Model.Tarefa.TRF_DataCriada.ToString("dd/MM/yyyy - hh:mm:ss")</p>
+
+    <label class="label-text-tarefa">Prioridade da tarefa</label>
+    <p class="text-tarefa">@Model.Tarefa.PrioridadeTarefa.PRD_Descricao</p>
+
+    <label class="label-text-tarefa">Status atual da tarefa</label>
+    <p class="text-tarefa">@Model.Tarefa.StatusTarefa.STS_Status</p>
+
+    <partial name="_LinkAtualizarStsTarefa" for="@Model.Tarefa" />
+}

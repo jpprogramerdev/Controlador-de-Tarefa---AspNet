@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Usuario>
+@{
+    Layout = "_LayoutAdm";
+    ViewData["Title"] = "Usuarios";
+    @if (TempData["SucessoAlterarUsuario"] != null) {
+        <div class="alert alert-success" role="alert">
+            @TempData["SucessoAlterarUsuario"]
+        </div>
+    } else if (TempData["SucessoApagarUsuario"] != null) {
+        <div class="alert alert-success" role="alert">
+            @TempData["SucessoApagarUsuario"]
+        </div>
+    }
+}
+
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Usuario usuario in Model) {
+            <partial name="_ListUsuario" for="@usuario"/>
+        }
+    </tbody>
+</table>

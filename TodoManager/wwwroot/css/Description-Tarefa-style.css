@@ -1,0 +1,13 @@
+﻿.label-text-tarefa{
+    font-size: 1.5rem;
+    font-style: oblique;
+}
+
+.text-tarefa {
+    padding: 0.7vh;
+    width: 100%;
+    border: 2px solid #1a1919;
+    border-radius: 2vh;
+    background-color:#eee;
+}
+

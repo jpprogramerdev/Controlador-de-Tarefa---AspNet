@@ -1,0 +1,113 @@
+﻿@model Tarefa
+
+
+    @if (Model.StatusTarefa.STS_Status == "Atribuida") {
+        <div class="cardNeutro">
+            <div class="card-body">
+                <h4 class="card-title">@Model.TRF_Titulo</h4>
+                <h5 class="card-text">@Model.PrioridadeTarefa.PRD_Descricao</h5>
+                <h6 class="card-text">@Model.StatusTarefa.STS_Status</h6>
+                <p class="card-text"><i>Data Limite: @Model.TRF_DataConclusao.ToString("dd/MM/yyyy")</i></p>
+                
+                @if(Model.TRF_DataFInalizada != DateTime.MinValue){
+                    <p class="card-text"><i>Ultima atualização: @Model.TRF_DataFInalizada.ToString("dd/MM/yyyy")</i></p>
+                }
+                <a asp-controller="Tarefa" asp-action="Editar" asp-route-id="@Model.TRF_Id"><i class="bi bi-pencil-fill edit-icon"></i></a>
+                <a asp-controller="Tarefa" asp-action="Index" asp-route-id="@Model.TRF_Id"><i class="bi bi-file-text detail-icon"></i></a>
+                <a asp-controller="Administrador" asp-action="DeleteTarefa" asp-route-id="@Model.TRF_Id" data-id="@Model.TRF_Id" class="delete-link"><i class="bi bi-trash"></i></a>
+            </div>
+        </div>
+    } else if (Model.StatusTarefa.STS_Status == "Em andamento") {
+        <div class="cardYellow">
+            <div class="card-body">
+                <h4 class="card-title">@Model.TRF_Titulo</h4>
+                <h5 class="card-text">@Model.PrioridadeTarefa.PRD_Descricao</h5>
+                <h6 class="card-text">@Model.StatusTarefa.STS_Status</h6>
+                <p class="card-text"><i>Data Limite: @Model.TRF_DataConclusao.ToString("dd/MM/yyyy")</i></p>
+                
+                @if(Model.TRF_DataFInalizada != DateTime.MinValue){
+                    <p class="card-text"><i>Ultima atualização: @Model.TRF_DataFInalizada.ToString("dd/MM/yyyy")</i></p>
+                }
+                <a asp-controller="Tarefa" asp-action="Editar" asp-route-id="@Model.TRF_Id"><i class="bi bi-pencil-fill edit-icon"></i></a>
+                <a asp-controller="Tarefa" asp-action="Index" asp-route-id="@Model.TRF_Id"><i class="bi bi-file-text detail-icon"></i></a>
+                <a asp-controller="Administrador" asp-action="DeleteTarefa" asp-route-id="@Model.TRF_Id" data-id="@Model.TRF_Id" class="delete-link"><i class="bi bi-trash"></i></a>
+            </div>
+        </div>
+    } else if (Model.StatusTarefa.STS_Status == "Concluida") {
+        <div class="cardGreen">
+            <div class="card-body">
+                <h4 class="card-title">@Model.TRF_Titulo</h4>
+                <h5 class="card-text">@Model.PrioridadeTarefa.PRD_Descricao</h5>
+                <h6 class="card-text">@Model.StatusTarefa.STS_Status</h6>
+                <p class="card-text"><i>Data Limite: @Model.TRF_DataConclusao.ToString("dd/MM/yyyy")</i></p>
+                
+                @if(Model.TRF_DataFInalizada != DateTime.MinValue){ 
+                    <p class="card-text"><i>Ultima atualização: @Model.TRF_DataFInalizada.ToString("dd/MM/yyyy")</i></p>
+                }
+                <a asp-controller="Tarefa" asp-action="Editar" asp-route-id="@Model.TRF_Id"><i class="bi bi-pencil-fill edit-icon"></i></a>
+                <a asp-controller="Tarefa" asp-action="Index" asp-route-id="@Model.TRF_Id"><i class="bi bi-file-text detail-icon"></i></a>
+                <a asp-controller="Administrador" asp-action="DeleteTarefa" asp-route-id="@Model.TRF_Id" data-id="@Model.TRF_Id" class="delete-link"><i class="bi bi-trash"></i></a>
+            </div>
+        </div>
+    } else {
+        <div class="cardRed">
+            <div class="card-body">
+                <h4 class="card-title">@Model.TRF_Titulo</h4>
+                <h5 class="card-text">@Model.PrioridadeTarefa.PRD_Descricao</h5>
+                <h6 class="card-text">@Model.StatusTarefa.STS_Status</h6>
+                <p class="card-text"><i>Data Limite: @Model.TRF_DataConclusao.ToString("dd/MM/yyyy")</i></p>
+
+                @if (Model.TRF_DataFInalizada != DateTime.MinValue) {
+                    <p class="card-text"><i>Ultima atualização: @Model.TRF_DataFInalizada.ToString("dd/MM/yyyy")</i></p>
+                }
+                <a asp-controller="Tarefa" asp-action="Editar" asp-route-id="@Model.TRF_Id"><i class="bi bi-pencil-fill edit-icon"></i></a>
+                <a asp-controller="Tarefa" asp-action="Index" asp-route-id="@Model.TRF_Id"><i class="bi bi-file-text detail-icon"></i></a>
+                <a asp-controller="Administrador" asp-action="DeleteTarefa" asp-route-id="@Model.TRF_Id" data-id="@Model.TRF_Id" class="delete-link"><i class="bi bi-trash"></i></a>
+            </div>
+        </div>
+    }
+
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmação de Exclusão</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza de que deseja excluir esta tarefa?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelDelete">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".delete-link").on("click", function (e) {
+            e.preventDefault();
+            var taskId = $(this).data("id");
+
+            $("#confirmDelete").data("task-id", taskId);
+
+            $("#confirmDeleteModal").modal("show");
+        });
+
+        $("#cancelDelete").on("click", function () {
+            $("#confirmDeleteModal").modal("hide");
+        });
+
+        $("#confirmDelete").on("click", function () {
+            var taskId = $(this).data("task-id");
+            window.location.href = "/Administrador/DeleteTarefa/" + taskId;
+        });
+    });
+</script>

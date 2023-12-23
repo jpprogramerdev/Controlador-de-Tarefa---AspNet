@@ -1,0 +1,23 @@
+﻿@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_LayoutLogin";
+}
+
+<form asp-action="Login" asp-controller="Login" method="post" class="form-login">
+    <fieldset>
+    
+    <legend class="display-4">Login</legend>
+        <img src="https://login.technoplus.com.br/assets/avatar-login.png" alt="Imagem de login" />
+    <div class="form-login-group">
+        <label for="email-user-login">Email:</label>
+        <input type="email" class="form-control" id="email-user-login" placeholder="Email" asp-for="@Model.LoginEmail">
+    </div>
+    <div class="form-login-group">
+        <label for="senha-user-login">Senha</label>
+        <input type="password" class="form-control" id="senha-user-login" placeholder="Senha" asp-for="@Model.LoginSenha">
+    </div>
+    <button type="submit" class="btn btn-primary btn-form-send">Entrar</button>
+    </fieldset>
+</form>

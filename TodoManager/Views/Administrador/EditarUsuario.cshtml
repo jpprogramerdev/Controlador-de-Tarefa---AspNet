@@ -1,0 +1,22 @@
+﻿@model Usuario
+
+@{
+    ViewData["Title"] = "Registrar usuario";
+    Layout = "_LayoutAdm";
+}
+<form asp-controller="Administrador" asp-action="EditarUsuarioPost" method="post">
+    <input type="hidden" asp-for="@Model.USU_Id" />
+    <div class="form-group">
+        <label for="name-register">Nome:</label>
+        <input type="text" class="form-control" id="name-register" asp-for="@Model.USU_Name" placeholder="Nome">
+    </div>
+    <div class="form-group">
+        <label for="email-register">Email:</label>
+        <input type="email" class="form-control" id="email-register" asp-for="@Model.USU_Email" placeholder="Email">
+    </div>
+    <input type="hidden" asp-for="@Model.USU_Senha" />
+    <input type="hidden" asp-for="@Model.USU_TPU_Id" />
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-form-send">Salvar</button>
+    </div>
+</form>

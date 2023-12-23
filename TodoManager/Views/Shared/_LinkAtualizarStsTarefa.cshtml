@@ -1,0 +1,8 @@
+﻿@model Tarefa
+
+@if (Model.TRF_STS_Id == 1)
+{
+    <a class="btn btn-outline-warning" role="button" asp-controller="Tarefa" asp-action="UpdateStatusTarefa" asp-route-id="@Model.TRF_Id">Iniciar Tarefa</a>
+} else if (Model.TRF_STS_Id == 2) {
+    <a class="btn btn-outline-success" role="button" asp-controller="Tarefa" asp-action="UpdateStatusTarefa" asp-route-id="@Model.TRF_Id">Finalizar Tarefa</a>
+}
